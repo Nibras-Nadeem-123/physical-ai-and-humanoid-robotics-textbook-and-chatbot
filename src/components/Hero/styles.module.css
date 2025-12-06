@@ -1,0 +1,32 @@
+.hero {
+  background: linear-gradient(to bottom, #1e1e1e, #121212);
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBanner {
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.heroButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

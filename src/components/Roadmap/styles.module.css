@@ -1,0 +1,63 @@
+.roadmapContainer {
+  padding: 4rem 0;
+  background-color: #1e1e1e;
+}
+
+.roadmapTitle {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3rem;
+}
+
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chapter {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.chapter:hover {
+  transform: translateY(-5px);
+}
+
+.chapterNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #25c2a0;
+}
+
+.chapterDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.chapterTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.chapterDescription {
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.chapterLink {
+  color: #25c2a0;
+  text-decoration: none;
+  font-weight: 700;
+}

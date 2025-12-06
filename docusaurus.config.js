@@ -1,29 +1,25 @@
-const lightCodeTheme = require('prism-react-renderer').themes.github;
-const darkCodeTheme = require('prism-react-renderer').themes.dracula;
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Physical AI & Humanoid Robotics',
-  tagline: 'A 12-Chapter Textbook',
-  favicon: 'img/favicon.ico',
+  tagline: 'A 12-Chapter Textbook on the Future of Embodied Intelligence',
+  favicon: 'img/logo.svg',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://physical-ai.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-organization', // Usually your GitHub org/user name.
-  projectName: 'physical-ai-humanoid-robotics-textbook', // Usually your repo name.
+  organizationName: 'ai-driven-development',
+  projectName: 'physical-ai-and-humanoid-robotic-textbook',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -36,17 +32,13 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/ai-driven-development/physical-ai-and-humanoid-robotic-textbook/tree/main/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/ai-driven-development/physical-ai-and-humanoid-robotic-textbook/tree/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -58,12 +50,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        respectPrefersColorScheme: true,
+      },
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/social-card.jpg',
       navbar: {
         title: 'Physical AI & Humanoid Robotics',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Physical AI Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -75,7 +71,7 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/ai-driven-development/physical-ai-and-humanoid-robotic-textbook',
             label: 'GitHub',
             position: 'right',
           },
@@ -85,7 +81,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Learn',
             items: [
               {
                 label: 'Textbook',
@@ -97,12 +93,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.gg/invite/docusaurus',
               },
               {
                 label: 'Twitter',
@@ -119,12 +111,12 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/ai-driven-development/physical-ai-and-humanoid-robotic-textbook',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Your Organization, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} AI Driven Development. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
