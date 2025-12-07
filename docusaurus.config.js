@@ -8,17 +8,18 @@ const config = {
   favicon: 'img/logo.svg',
 
   // Set the production url of your site here
-  url: 'https://physical-ai.com',
+  url: 'https://nibras-nadeem-123.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/physical-ai-and-humanoid-robotic-textbook/',
 
   // GitHub pages deployment config.
-  organizationName: 'ai-driven-development',
+  organizationName: 'nibras-nadeem-123',
   projectName: 'physical-ai-and-humanoid-robotic-textbook',
-
+deploymentBranch: 'gh-pages',
+trailingSlash: false,
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn', 
 
   i18n: {
     defaultLocale: 'en',
@@ -39,6 +40,8 @@ const config = {
           showReadingTime: true,
           editUrl:
             'https://github.com/ai-driven-development/physical-ai-and-humanoid-robotic-textbook/tree/main/',
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: 'All Posts',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -65,7 +68,7 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'chapters',
             position: 'left',
             label: 'Textbook',
           },
@@ -85,7 +88,7 @@ const config = {
             items: [
               {
                 label: 'Textbook',
-                to: '/docs/intro',
+                to: '/docs/chapters/01-introduction',
               },
             ],
           },
