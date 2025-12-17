@@ -70,10 +70,10 @@ This document outlines the detailed tasks required to implement the "Physical AI
 
 ## 5. RAG Query Pipeline
 
--   [ ] **Task**: Implement query embedding generation for user questions.
+-   [X] **Task**: Implement query embedding generation for user questions.
     -   **Description**: Use the same embedding model as for content to convert user queries into vectors.
     -   **Test**: Unit tests for query embedding.
--   [ ] **Task**: Implement vector similarity search in Qdrant for query retrieval.
+-   [X] **Task**: Implement vector similarity search in Qdrant for query retrieval.
     -   **Description**: Develop logic to query Qdrant with an embedded user question and retrieve top-k relevant text chunks.
     -   **Test**: Integration tests to verify relevant chunks are returned for example queries.
 -   [X] **Task**: Integrate Generative Model (OpenAI Agents / ChatKit SDK) for response generation.
@@ -85,7 +85,7 @@ This document outlines the detailed tasks required to implement the "Physical AI
 
 ## 6. Agent Orchestration
 
--   [ ] **Task**: Implement Agent Orchestration Layer core logic.
+-   [X] **Task**: Implement Agent Orchestration Layer core logic.
     -   **Description**: Develop the central component responsible for coordinating agent skills and subagents (FR-010).
     -   **Test**: Unit tests for basic routing decisions.
 -   [X] **Task**: Design and implement Agent Skill registry mechanism.
@@ -127,7 +127,7 @@ This document outlines the detailed tasks required to implement the "Physical AI
 -   [X] **Task**: Implement API client in frontend widget for FastAPI backend.
     -   **Description**: Use `fetch` or a library (e.g., `axios`) to communicate with the FastAPI `/chat` and `/auth/login` endpoints.
     -   **Test**: Widget can successfully send requests and receive responses.
--   [ ] **Task**: Integrate JWT handling in frontend for authenticated API calls.
+-   [X] **Task**: Integrate JWT handling in frontend for authenticated API calls.
     -   **Description**: Store and attach JWT to outgoing requests.
     -   **Test**: Authenticated calls succeed; unauthenticated calls fail.
 -   [X] **Task**: Implement selected text capture and transmission to backend.
