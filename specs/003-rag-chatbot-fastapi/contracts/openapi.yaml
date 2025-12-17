@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  title: Physical AI Textbook RAG Chatbot API
+  version: 1.0.0
+  description: API for the Physical AI Textbook RAG Chatbot backend.
+
+servers:
+  - url: /api/v1
+    description: Main API server
+
+components:
+  securitySchemes:
+    JWTBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - JWTBearer: []
+
+paths:
+  /chat:
+    post:
+      summary: Submit a chat query
+      description: Allows users to submit a query to the RAG chatbot.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The user's question.
+                context:
+                  type: string
+                  description: Optional selected text context for the query.
+      responses:
+        '200':
+          description: Successful response with the chatbot's answer and citations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                  citations:
+                    type: array
+                    items:
+                      type: string
+        '401':
+          description: Unauthorized if JWT is missing or invalid.
+        '500':
+          description: Internal server error.
+
+  /auth/login:
+    post:
+      summary: User login
+      description: Authenticates a user and returns a JWT token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful login, returns JWT token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+        '400':
+          description: Invalid credentials.
+
+  # Placeholder for Skill management API if needed
+  # /skills:
+  #   get:
+  #     summary: List available skills
+  #     responses:
+  #       '200':
+  #         description: List of skills.

@@ -211,6 +211,8 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 
 ## Active Technologies
 - Python 3.11, Node.js 20.x (001-rag-chatbot-fastapi)
+- Python 3.11 + FastAPI, OpenAI Agents / ChatKit SDK, Qdrant, Better Auth SDK/client (003-rag-chatbot-fastapi)
+- Qdrant (vector database) for embeddings and RAG, PostgreSQL for user data, conversation history, and skill metadata. (003-rag-chatbot-fastapi)
 
 ## Recent Changes
 - 001-rag-chatbot-fastapi: Added Python 3.11, Node.js 20.x

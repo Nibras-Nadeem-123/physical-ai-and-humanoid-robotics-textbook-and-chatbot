@@ -1,10 +1,26 @@
 from fastapi import FastAPI
-from backend.app.api.endpoints import chat
+from fastapi.middleware.cors import CORSMiddleware
+from backend.app.api.endpoints import chat, auth
 from fastapi_limiter import FastAPILimiter
 import redis.asyncio as redis
 import os
 
 app = FastAPI()
+
+# Add CORS middleware
+origins = [
+    "http://localhost",
+    "http://localhost:3000",  # Frontend Docusaurus
+    "http://localhost:8000",  # Backend
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup():
@@ -12,7 +28,8 @@ async def startup():
     redis_instance = redis.from_url(REDIS_URL, encoding="utf-8", decode_responses=True)
     await FastAPILimiter.init(redis_instance)
 
-app.include_router(chat.router, prefix="/api")
+app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+app.include_router(chat.router, prefix="/api", tags=["chat"])
 
 @app.get("/")
 def read_root():

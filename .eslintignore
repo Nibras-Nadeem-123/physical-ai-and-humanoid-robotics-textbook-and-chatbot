@@ -1,0 +1,9 @@
+# .eslintignore
+
+node_modules/
+dist/
+build/
+coverage/
+*.min.js
+frontend/build/
+frontend/node_modules/

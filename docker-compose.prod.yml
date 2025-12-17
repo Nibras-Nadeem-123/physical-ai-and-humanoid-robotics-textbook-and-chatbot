@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    # In production, use a reverse proxy like Nginx or Caddy to expose the port securely
+    # ports:
+    #   - "8000:8000" 
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - QDRANT_HOST=${QDRANT_HOST} # Should be external Qdrant Cloud host in prod
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - BETTER_AUTH_API_KEY=${BETTER_AUTH_API_KEY}
+      - BETTER_AUTH_BASE_URL=${BETTER_AUTH_BASE_URL} # Should be external Better Auth URL in prod
+      - DATABASE_URL=${DATABASE_URL} # Should be external PostgreSQL URL in prod
+      - SECRET_KEY=${SECRET_KEY}
+    depends_on:
+      # In production, these would typically be managed external services
+      # - qdrant
+      # - postgres
+      - frontend # Depends on frontend for potential shared network or deployment ordering
+    restart: always # Ensure service restarts on failure
+    # Add resource limits and health checks for production
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    # In production, use a reverse proxy like Nginx or Caddy to expose the port securely
+    ports:
+      - "3000:3000" # Expose only if behind a reverse proxy or for direct access
+    environment:
+      - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL} # Should point to external backend URL in prod
+    restart: always # Ensure service restarts on failure
+    # Add health checks for production
+
+# Volumes are not typically managed by docker-compose in production if using managed databases
+# volumes:
+#   qdrant_data:
+#   postgres_data:
