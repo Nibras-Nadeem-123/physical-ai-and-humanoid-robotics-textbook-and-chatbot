@@ -1,0 +1,101 @@
+/* frontend/src/components/Chat.css */
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 80vh; /* Adjust as needed */
+  max-width: 800px;
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #282c34; /* Dark background for chat */
+  color: #f8f8f2; /* Light text for chat */
+}
+
+.chat-header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.2em;
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h2 {
+  margin: 0;
+  color: white;
+}
+
+.logout-button {
+  background-color: #f44336; /* Red */
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #2e3138; /* Slightly lighter dark background */
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.chat-message.user {
+  text-align: right;
+  color: #98c379; /* Greenish for user messages */
+}
+
+.chat-message.assistant {
+  text-align: left;
+  color: #61afef; /* Bluish for assistant messages */
+}
+
+.chat-input-form {
+  display: flex;
+  border-top: 1px solid #444;
+  padding: 15px;
+  background-color: #333;
+}
+
+.chat-input-form input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #444;
+  color: #f8f8f2;
+}
+
+.chat-input-form input:focus {
+  outline: none;
+  border-color: #61afef;
+}
+
+.chat-input-form button {
+  background-color: #61afef; /* Blue */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.chat-input-form button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}

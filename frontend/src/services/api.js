@@ -1,54 +1,72 @@
-// Placeholder for Frontend API Client
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api/v1';
+// frontend/src/services/api.js
 
-const getToken = () => localStorage.getItem('access_token');
-const setToken = (token) => localStorage.setItem('access_token', token);
-const removeToken = () => localStorage.removeItem('access_token');
+const API_BASE_URL = process.env.NODE_ENV === 'production'
+  ? 'https://your-production-backend-url.com' // TODO: Replace with your production backend URL
+  : 'http://localhost:8000'; // Default to localhost for development
 
-export const loginUser = async (username, password) => {
-  const formBody = new URLSearchParams();
-  formBody.append('username', username);
-  formBody.append('password', password);
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('access_token');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
 
-  const response = await fetch(`${API_BASE_URL}/auth/login`, {
+export const login = async (username, password) => {
+  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: formBody.toString(),
+    body: new URLSearchParams({
+      username,
+      password,
+    }),
   });
+
   if (!response.ok) {
-    throw new Error('Login failed');
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Login failed');
   }
+
   const data = await response.json();
-  setToken(data.access_token);
+  localStorage.setItem('access_token', data.access_token);
   return data;
 };
 
-export const chatWithBot = async (session_id, query, selected_text) => {
-  const token = getToken();
-  if (!token) {
-    throw new Error('No authentication token found. Please log in.');
-  }
-
-  const response = await fetch(`${API_BASE_URL}/chat`, {
-    method: 'POST',
+export const updateConsent = async (hasConsented) => {
+  const response = await fetch(`${API_BASE_URL}/api/auth/consent`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      ...getAuthHeaders(),
     },
-    body: JSON.stringify({ session_id, message: query, selected_text }),
+    body: JSON.stringify({ has_consented: hasConsented }),
   });
+
   if (!response.ok) {
-    throw new Error('Chat failed');
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Consent update failed');
   }
+
   return response.json();
 };
 
-export const logoutUser = () => {
-  removeToken();
+export const chatWithBot = async (query, session_id, history) => {
+  const response = await fetch(`${API_BASE_URL}/api/chat`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...getAuthHeaders(),
+    },
+    body: JSON.stringify({ query, session_id, history }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Chat failed');
+  }
+
+  return response.json();
 };
 
-export const isAuthenticated = () => {
-  return getToken() !== null;
+export const logout = () => {
+  localStorage.removeItem('access_token');
 };
